@@ -1,0 +1,27 @@
+{
+	"name": "ve/thor",
+	"type": "library",
+	"description": "Theme aware asset management",
+	"keywords": ["FuelPHP", "assets"],
+	"homepage": "https://github.com/ve-interactive/thor",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Steve \"Uru\" West",
+			"email": "steve.west@veinteractive.com"
+		}
+	],
+    "require": {
+		"php": ">=5.4"
+    },
+	"require-dev": {
+		"mockery/mockery": "0.7.*",
+		"phpunit/phpunit": "3.7",
+	},
+    "autoload": {
+        "psr-0": {
+			"Ve\\Thor": "src/"
+		}
+	},
+    "minimum-stability": "dev"
+}
