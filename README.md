@@ -1,7 +1,7 @@
-thor
-====
+Vasset
+======
 
-[![Build Status](https://travis-ci.org/ve-interactive/thor.png)] (https://travis-ci.org/ve-interactive/thor)
+[![Build Status](https://travis-ci.org/ve-interactive/vasset.png)] (https://travis-ci.org/ve-interactive/vasset)
 
 
-Composer based advanced asset manager for FuelPHP
+Composer based advanced asset manager
