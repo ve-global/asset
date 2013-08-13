@@ -10,16 +10,26 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset\Environment;
+namespace Ve\Vasset\Environment\Fuelv1;
+
+use Ve\Vasset\Environment\ConfigInterface;
 
 /**
- * Defines a common interface for interacting with configs
+ * Defines an interface to interact with FuelPHP v1 style config class
  *
- * @package Ve\Vasset\Environment
+ * @package Ve\Vasset\Environment\Fuelv1
  * @author  Ve Interactive PHP Team
  */
-interface ConfigInterface
+class Config implements ConfigInterface
 {
+
+	/**
+	 * Ensures the config file is loaded
+	 */
+	public function __construct()
+	{
+		\Config::load('vasset', true);
+	}
 
 	/**
 	 * Returns a config value based on $key, defaulting to $default if $key cannot be found.
@@ -29,6 +39,9 @@ interface ConfigInterface
 	 *
 	 * @return mixed
 	 */
-	public function get($key, $default = null);
+	public function get($key, $default = null)
+	{
+		return \Config::get('vasset.' . $key, $default);
+	}
 
 }

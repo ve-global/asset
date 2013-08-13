@@ -13,15 +13,51 @@
 namespace Ve\Vasset\Environment;
 
 /**
+ * Defines a common interface for interacting with environments
  *
  * @package Ve\Vasset\Environment
- * @author Ve Interactive PHP team
+ * @author  Ve Interactive PHP Team
  */
 abstract class Driver
 {
 
-	public abstract function bootstrap();
+	/**
+	 * @var ConfigInterface
+	 */
+	protected $configInstance = null;
 
-	public abstract function getConfigInstance();
+	/**
+	 * Should perform any action necessary for the driver to be able to interact with its environment
+	 */
+	protected abstract function bootstrap();
+
+	/**
+	 * Should return a ConfigInterface to allow interaction with the environment's config fetching
+	 * @return ConfigInterface
+	 */
+	protected abstract function getConfigInstance();
+
+	/**
+	 * Calls the bootstrap method to allow for setup
+	 */
+	public function __construct()
+	{
+		$this->bootstrap();
+	}
+
+	/**
+	 * Returns a config object to allow fetching of config values
+	 *
+	 * @return ConfigInterface
+	 */
+	public function getConfig()
+	{
+		if (is_null($this->configInstance))
+		{
+			$this->configInstance = $this->getConfigInstance();
+		}
+
+		return $this->configInstance;
+	}
 
 }

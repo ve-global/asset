@@ -16,7 +16,7 @@ namespace Ve\Vasset;
  *
  *
  * @package Ve\Vasset
- * @author Ve Interactive PHP team
+ * @author  Ve Interactive PHP Team
  */
 class Vasset
 {

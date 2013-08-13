@@ -15,7 +15,7 @@ namespace Ve\Vasset;
 /**
  *
  * @package Ve\Vasset\Environment
- * @author Ve Interactive PHP team
+ * @author  Ve Interactive PHP Team
  */
 class VassetTest extends \PHPUnit_Framework_TestCase
 {
