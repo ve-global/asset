@@ -26,7 +26,7 @@ class Fuelv1 extends Driver
 	/**
 	 * Ensure the right folder is added to finder to allow for config loading
 	 */
-	public function bootstrap()
+	public function bootstrap(array $config = [])
 	{
 		\Finder::add_path(__DIR__.'../../../../../resources/');
 	}
