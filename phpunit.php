@@ -1,6 +1,6 @@
 <?php
 
-namespace Ve\Thor;
+namespace Ve\Vasset;
 
 class Dummy{}
 

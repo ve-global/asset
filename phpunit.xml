@@ -7,11 +7,11 @@
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
   processIsolation="false"
-  stopOnFailure="true"
+  stopOnFailure="false"
   syntaxCheck="false">
   
   <testsuites>
-    <testsuite name="ve/thor">
+    <testsuite name="ve/vasset">
       <directory suffix=".php">./tests/</directory>
     </testsuite>
   </testsuites>
@@ -20,7 +20,4 @@
       <directory suffix=".php">./vendor/</directory>
     </blacklist>
   </filter>
-  <listeners>
-    <listener class="\Mockery\Adapter\Phpunit\TestListener" file="./vendor/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php"></listener>
-  </listeners>
 </phpunit>
