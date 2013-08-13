@@ -10,26 +10,14 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset;
+namespace Ve\Vasset\Environment;
 
 /**
  *
  * @package Ve\Vasset\Environment
  * @author Ve Interactive PHP team
  */
-class VassetTest extends \PHPUnit_Framework_TestCase
+class Loader
 {
 
-	protected function setUp()
-	{
-	}
-
-	public function testConstruct()
-	{
-		$object = new Vasset();
-
-		$this->assertInstanceOf('Ve\Vasset\Vasset', $object);
-	}
-
 }
-
