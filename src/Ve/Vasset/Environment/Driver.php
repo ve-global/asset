@@ -57,7 +57,7 @@ abstract class Driver
 		// Check that the class actually exists
 		if ( ! class_exists($className))
 		{
-			throw new \InvalidArgumentException($environment. ' is not a know environment');
+			throw new \InvalidArgumentException($environment. ' is not a known environment');
 		}
 
 		return new $className($config);
