@@ -1,14 +1,25 @@
 <?php
 
+/**
+ * This file is part of the Vasset package.
+ *
+ * Released under the MIT licence.
+ * This file is free to use and reuse as long as the original credits are preserved.
+ *
+ * @license MIT License
+ * @copyright 2013 Ve Interactive
+ */
+
 namespace Ve\Vasset;
 
+/**
+ *
+ * @package Ve\Vasset\Environment
+ * @author  Ve Interactive PHP Team
+ */
 class VassetTest extends \PHPUnit_Framework_TestCase
 {
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
 	protected function setUp()
 	{
 	}
