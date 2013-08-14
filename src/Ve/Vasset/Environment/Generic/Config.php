@@ -54,14 +54,12 @@ class Config implements ConfigInterface
 	{
 		$array = $this->config;
 
+		// Lovingly copied from the FuelPHP v1 Arr::get()
 		foreach (explode('.', $key) as $key_part)
 		{
-			if (isset($array[$key_part]) === false)
+			if (isset($array[$key_part]) === false && ! is_array($array) or ! array_key_exists($key_part, $array))
 			{
-				if ( ! is_array($array) or ! array_key_exists($key_part, $array))
-				{
-					return $default;
-				}
+				return $default;
 			}
 
 			$array = $array[$key_part];
