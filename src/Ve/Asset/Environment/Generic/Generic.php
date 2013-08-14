@@ -10,15 +10,15 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset\Environment\Generic;
+namespace Ve\Asset\Environment\Generic;
 
-use Ve\Vasset\Environment\ConfigInterface;
-use Ve\Vasset\Environment\Driver;
+use Ve\Asset\Environment\ConfigInterface;
+use Ve\Asset\Environment\Driver;
 
 /**
  * Allows the use of Vasset outside of a framework
  *
- * @package Ve\Vasset\Environment\Generic
+ * @package Ve\Asset\Environment\Generic
  * @author Ve Interactive PHP Team
  */
 class Generic extends Driver

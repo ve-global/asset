@@ -1,13 +1,13 @@
 <?php
 
-namespace Ve\Vasset\Environment\Generic;
+namespace Ve\Asset\Environment\Generic;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @covers Ve\Vasset\Environment\Generic\Config::get
-	 * @covers Ve\Vasset\Environment\Generic\Config::__construct
+	 * @covers Ve\Asset\Environment\Generic\Config::get
+	 * @covers Ve\Asset\Environment\Generic\Config::__construct
 	 */
 	public function testGet()
 	{
@@ -62,8 +62,8 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Ve\Vasset\Environment\Generic\Config::get
-	 * @covers Ve\Vasset\Environment\Generic\Config::__construct
+	 * @covers Ve\Asset\Environment\Generic\Config::get
+	 * @covers Ve\Asset\Environment\Generic\Config::__construct
 	 */
 	public function testGetMultipleFiles()
 	{

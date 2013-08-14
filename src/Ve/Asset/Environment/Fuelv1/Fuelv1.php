@@ -10,14 +10,14 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset\Environment\Fuelv1;
+namespace Ve\Asset\Environment\Fuelv1;
 
-use Ve\Vasset\Environment\Driver;
+use Ve\Asset\Environment\Driver;
 
 /**
  * Defines an interface with the FuelPHP v1.x framework
  *
- * @package Ve\Vasset\Environment\Fuelv1
+ * @package Ve\Asset\Environment\Fuelv1
  * @author  Ve Interactive PHP Team
  */
 class Fuelv1 extends Driver

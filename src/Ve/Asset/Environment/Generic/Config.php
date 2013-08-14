@@ -10,14 +10,14 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset\Environment\Generic;
+namespace Ve\Asset\Environment\Generic;
 
-use Ve\Vasset\Environment\ConfigInterface;
+use Ve\Asset\Environment\ConfigInterface;
 
 /**
  * Fetches
  *
- * @package Ve\Vasset\Environment\Generic
+ * @package Ve\Asset\Environment\Generic
  * @author Ve Interactive PHP Team
  */
 class Config implements ConfigInterface

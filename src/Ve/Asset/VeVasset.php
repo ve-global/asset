@@ -10,15 +10,15 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset;
+namespace Ve\Asset;
 
 /**
  *
  *
- * @package Ve\Vasset
+ * @package Ve\Asset
  * @author  Ve Interactive PHP Team
  */
-class Vasset
+class VeAsset
 {
 
 }

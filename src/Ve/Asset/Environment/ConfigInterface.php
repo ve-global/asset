@@ -10,12 +10,12 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset\Environment;
+namespace Ve\Asset\Environment;
 
 /**
  * Defines a common interface for interacting with configs
  *
- * @package Ve\Vasset\Environment
+ * @package Ve\Asset\Environment
  * @author  Ve Interactive PHP Team
  */
 interface ConfigInterface

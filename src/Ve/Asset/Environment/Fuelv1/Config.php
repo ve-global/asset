@@ -10,14 +10,14 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Vasset\Environment\Fuelv1;
+namespace Ve\Asset\Environment\Fuelv1;
 
-use Ve\Vasset\Environment\ConfigInterface;
+use Ve\Asset\Environment\ConfigInterface;
 
 /**
  * Defines an interface to interact with FuelPHP v1 style config class
  *
- * @package Ve\Vasset\Environment\Fuelv1
+ * @package Ve\Asset\Environment\Fuelv1
  * @author  Ve Interactive PHP Team
  */
 class Config implements ConfigInterface

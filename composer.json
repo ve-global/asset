@@ -20,7 +20,7 @@
 	},
     "autoload": {
         "psr-0": {
-			"Ve\\Vasset": "src/"
+			"Ve\\Asset": "src/"
 		}
 	},
     "minimum-stability": "dev"
