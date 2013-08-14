@@ -19,7 +19,7 @@ use Ve\Asset\Environment\Driver;
  * Allows the use of Vasset outside of a framework
  *
  * @package Ve\Asset\Environment\Generic
- * @author Ve Interactive PHP Team
+ * @author  Ve Interactive PHP Team
  */
 class Generic extends Driver
 {
@@ -34,7 +34,7 @@ class Generic extends Driver
 	protected function bootstrap(array $config = [])
 	{
 		$this->configFiles = $config;
-		array_unshift($this->configFiles, realpath(__DIR__.'../../../../../resources/config/veasset.php'));
+		array_unshift($this->configFiles, realpath(__DIR__.'/../../../../../resources/config/veasset.php'));
 	}
 
 	/**

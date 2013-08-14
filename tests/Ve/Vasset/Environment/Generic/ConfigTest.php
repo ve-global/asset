@@ -1,7 +1,23 @@
 <?php
 
+/**
+ * This file is part of the Vasset package.
+ *
+ * Released under the MIT licence.
+ * This file is free to use and reuse as long as the original credits are preserved.
+ *
+ * @license MIT License
+ * @copyright 2013 Ve Interactive
+ */
+
 namespace Ve\Asset\Environment\Generic;
 
+/**
+ * Class ConfigTest
+ *
+ * @package Ve\Asset\Environment\Generic
+ * @author  Ve Interactive PHP team
+ */
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
 

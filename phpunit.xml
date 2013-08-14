@@ -18,6 +18,10 @@
   <filter>
     <blacklist>
       <directory suffix=".php">./vendor/</directory>
+      <directory suffix=".php">./resources/</directory>
     </blacklist>
   </filter>
+    <listeners>
+        <listener class="\Mockery\Adapter\Phpunit\TestListener" file="./vendor/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php"></listener>
+    </listeners>
 </phpunit>
