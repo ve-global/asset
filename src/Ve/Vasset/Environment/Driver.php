@@ -47,7 +47,7 @@ abstract class Driver
 	 * 
 	 * @return Driver
 	 */
-	public static function setEnvironment($environment, $config = [])
+	public static function getEnvironment($environment, $config = [])
 	{
 		// Work out the base class from the name
 		$namespace = 'Ve\Vasset\Environment\\';

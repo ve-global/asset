@@ -24,6 +24,8 @@ use Ve\Vasset\Environment\Driver;
 class Generic extends Driver
 {
 
+	protected $configFiles = [];
+
 	/**
 	 * Should perform any action necessary for the driver to be able to interact with its environment
 	 *
@@ -31,7 +33,8 @@ class Generic extends Driver
 	 */
 	protected function bootstrap(array $config = [])
 	{
-		// TODO: Implement bootstrap() method.
+		$this->configFiles = $config;
+		array_unshift($this->configFiles, realpath(__DIR__.'../../../../../resources/config/veasset.php'));
 	}
 
 	/**
@@ -41,7 +44,7 @@ class Generic extends Driver
 	 */
 	protected function getConfigInstance()
 	{
-		return new Config([__DIR__.'../../../../../resources/config/veasset.php']);
+		return new Config($this->configFiles);
 	}
 
 }
