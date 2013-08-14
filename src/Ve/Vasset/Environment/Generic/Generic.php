@@ -41,7 +41,7 @@ class Generic extends Driver
 	 */
 	protected function getConfigInstance()
 	{
-		// TODO: Implement getConfigInstance() method.
+		return new Config([__DIR__.'../../../../../resources/config/veasset.php']);
 	}
 
 }

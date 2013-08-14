@@ -28,7 +28,7 @@ class Config implements ConfigInterface
 	 */
 	public function __construct()
 	{
-		\Config::load('vasset', true);
+		\Config::load('veasset', true);
 	}
 
 	/**
@@ -41,7 +41,7 @@ class Config implements ConfigInterface
 	 */
 	public function get($key, $default = null)
 	{
-		return \Config::get('vasset.' . $key, $default);
+		return \Config::get('veasset.' . $key, $default);
 	}
 
 }
