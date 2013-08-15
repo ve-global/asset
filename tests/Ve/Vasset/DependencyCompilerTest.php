@@ -12,9 +12,6 @@
 
 namespace Ve\Asset;
 
-use Ve\Asset\Exception\CircularDependencyException;
-use Ve\Asset\Exception\UnsatisfiableDependencyException;
-
 /**
  * Class DependencyCompilerTest
  *
@@ -174,7 +171,33 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers Ve\Asset\DependencyCompiler::addGroup
 	 * @covers Ve\Asset\DependencyCompiler::compile
-	 * @expectedException CircularDependencyException
+	 */
+	public function testDependencyCompileThreeLevel()
+	{
+		$this->object->addGroup('one', [
+				'deps' => ['two'],
+				'files' => ['f1'],
+			]);
+
+		$this->object->addGroup('two', [
+				'deps' => ['three'],
+				'files' => ['f2'],
+			]);
+
+		$this->object->addGroup('three', [
+				'files' => ['f3'],
+			]);
+
+		$this->assertEquals(
+			['f3', 'f2', 'f1'],
+			$this->object->compile()
+		);
+	}
+
+	/**
+	 * @covers Ve\Asset\DependencyCompiler::addGroup
+	 * @covers Ve\Asset\DependencyCompiler::compile
+	 * @expectedException Ve\Asset\Exception\CircularDependencyException
 	 */
 	public function testCircularDependencyCompile()
 	{
@@ -194,7 +217,7 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers Ve\Asset\DependencyCompiler::addGroup
 	 * @covers Ve\Asset\DependencyCompiler::compile
-	 * @expectedException UnsatisfiableDependencyException
+	 * @expectedException Ve\Asset\Exception\UnsatisfiableDependencyException
 	 */
 	public function testMissingDepCompile()
 	{

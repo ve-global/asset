@@ -13,6 +13,7 @@
 namespace Ve\Asset;
 
 use FuelPHP\Common\Arr;
+use Ve\Asset\Exception\CircularDependencyException;
 
 /**
  * Defines a basic array based dependency compiler
@@ -85,20 +86,17 @@ class DependencyCompiler implements DependencyCompilerInterface
 			{
 				// If the current group is above the dependency
 				$groupIndex = $groupKeys[$name];
-				$previousGroups = array_splice($groups, 0, $groupIndex+1);
+				$depIndex = $groupKeys[$dep];
 
-				if ( ! in_array($dep, $previousGroups))
+				if ($depIndex >= $groupIndex)
 				{
-					// Move the current group down under the dependency
-					// Move $name below $dep
-					// $groupIndex represents the child group, this one needs to move
+					// Move the dep to the start
+					unset($groups[$depIndex]);
 
-					// Get the index of the parent group
-					$depIndex = $groupKeys[$dep];
-					$arrayStart = array_splice($groups, 0, $depIndex+1);
-					$arrayEnd = array_splice($groups, $depIndex);
+					// Add the dep to the start of the groups array
+					array_unshift($groups, $dep);
 
-					$groups = $arrayStart + [$depIndex+1 => $name] + $arrayEnd;
+					// Make sure the key index is updated
 					$groupKeys = array_flip($groups);
 				}
 			}
