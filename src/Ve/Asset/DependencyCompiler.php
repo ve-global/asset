@@ -14,6 +14,7 @@ namespace Ve\Asset;
 
 use FuelPHP\Common\Arr;
 use Ve\Asset\Exception\CircularDependencyException;
+use Ve\Asset\Exception\UnsatisfiableDependencyException;
 
 /**
  * Defines a basic array based dependency compiler
@@ -84,6 +85,12 @@ class DependencyCompiler implements DependencyCompilerInterface
 			// Check each dependency is above the current group
 			foreach ($deps as $dep)
 			{
+				// Check that the dep exists
+				if ( ! array_key_exists($dep, $groupKeys))
+				{
+					throw new UnsatisfiableDependencyException('Unable to find dependency: '.$dep.' for: '.$name);
+				}
+
 				// If the current group is above the dependency
 				$groupIndex = $groupKeys[$name];
 				$depIndex = $groupKeys[$dep];
