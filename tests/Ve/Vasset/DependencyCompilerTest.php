@@ -122,7 +122,7 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 			]);
 
 		$this->assertEquals(
-			['f1', 'f2', 'f3'],
+			['one'],
 			$this->object->compile()
 		);
 	}
@@ -133,16 +133,12 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testTwoGroupCompile()
 	{
-		$this->object->addGroup('one', [
-				'files' => ['f1', 'f2', 'f3'],
-			]);
+		$this->object->addGroup('one', []);
 
-		$this->object->addGroup('two', [
-				'files' => ['f4', 'f5', 'f6'],
-			]);
+		$this->object->addGroup('two', []);
 
 		$this->assertEquals(
-			['f1', 'f2', 'f3', 'f4', 'f5', 'f6'],
+			['one', 'two'],
 			$this->object->compile()
 		);
 	}
@@ -155,15 +151,12 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->addGroup('one', [
 				'deps' => ['two'],
-				'files' => ['f1', 'f2', 'f3'],
 			]);
 
-		$this->object->addGroup('two', [
-				'files' => ['f4', 'f5', 'f6'],
-			]);
+		$this->object->addGroup('two', []);
 
 		$this->assertEquals(
-			['f4', 'f5', 'f6', 'f1', 'f2', 'f3'],
+			['two', 'one'],
 			$this->object->compile()
 		);
 	}
@@ -176,20 +169,16 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->addGroup('one', [
 				'deps' => ['two'],
-				'files' => ['f1'],
 			]);
 
 		$this->object->addGroup('two', [
 				'deps' => ['three'],
-				'files' => ['f2'],
 			]);
 
-		$this->object->addGroup('three', [
-				'files' => ['f3'],
-			]);
+		$this->object->addGroup('three', []);
 
 		$this->assertEquals(
-			['f3', 'f2', 'f1'],
+			['three', 'two', 'one'],
 			$this->object->compile()
 		);
 	}
@@ -202,25 +191,20 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->addGroup('one', [
 				'deps' => ['two', 'four'],
-				'files' => ['f1'],
 			]);
 
 		$this->object->addGroup('two', [
 				'deps' => ['three'],
-				'files' => ['f2'],
 			]);
 
 		$this->object->addGroup('four', [
 				'deps' => ['three'],
-				'files' => ['f4'],
 			]);
 
-		$this->object->addGroup('three', [
-				'files' => ['f3'],
-			]);
+		$this->object->addGroup('three', []);
 
 		$this->assertEquals(
-			['f3', 'f4', 'f2', 'f1'],
+			['three', 'four', 'two', 'one'],
 			$this->object->compile()
 		);
 	}
@@ -234,7 +218,6 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->addGroup('one', [
 				'deps' => ['two'],
-				'files' => ['f1', 'f2', 'f3'],
 			]);
 
 		$this->object->compile();

@@ -36,7 +36,6 @@ class DependencyCompiler implements DependencyCompilerInterface
 	 *
 	 * [
 	 * 		'deps' => ['group1', 'group2'],
-	 * 		'files' => [ 'file1', 'file2', 'file3' ]
 	 * ]
 	 *
 	 * This will ensure that all files and dependencies from group1 and group2 are included before the files in "files"
@@ -109,14 +108,7 @@ class DependencyCompiler implements DependencyCompilerInterface
 			}
 		}
 
-		// Keep track of the files to return
-		$fileList = [];
-		foreach ($groups as $group)
-		{
-			$fileList = array_merge($fileList, $this->groups[$group]['files']);
-		}
-
-		return $fileList;
+		return $groups;
 	}
 
 	/**
