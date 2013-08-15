@@ -197,6 +197,37 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers Ve\Asset\DependencyCompiler::addGroup
 	 * @covers Ve\Asset\DependencyCompiler::compile
+	 */
+	public function testDependencyCompileComplexTree()
+	{
+		$this->object->addGroup('one', [
+				'deps' => ['two', 'four'],
+				'files' => ['f1'],
+			]);
+
+		$this->object->addGroup('two', [
+				'deps' => ['three'],
+				'files' => ['f2'],
+			]);
+
+		$this->object->addGroup('four', [
+				'deps' => ['three'],
+				'files' => ['f4'],
+			]);
+
+		$this->object->addGroup('three', [
+				'files' => ['f3'],
+			]);
+
+		$this->assertEquals(
+			['f3', 'f4', 'f2', 'f1'],
+			$this->object->compile()
+		);
+	}
+
+	/**
+	 * @covers Ve\Asset\DependencyCompiler::addGroup
+	 * @covers Ve\Asset\DependencyCompiler::compile
 	 * @expectedException Ve\Asset\Exception\CircularDependencyException
 	 */
 	public function testCircularDependencyCompile()
@@ -207,6 +238,11 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 			]);
 
 		$this->object->addGroup('two', [
+				'deps' => ['three'],
+				'files' => ['f4', 'f5', 'f6'],
+			]);
+
+		$this->object->addGroup('three', [
 				'deps' => ['one'],
 				'files' => ['f4', 'f5', 'f6'],
 			]);
