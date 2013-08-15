@@ -10,15 +10,15 @@
  * @copyright 2013 Ve Interactive
  */
 
-namespace Ve\Asset;
+namespace Ve\Asset\Exception;
 
 /**
+ * Gets thrown when a dependency cannot be satisfied
  *
- *
- * @package Ve\Asset
+ * @package Ve\Asset\Exception
  * @author  Ve Interactive PHP Team
  */
-class VeAsset
+class UnsatisfiableDependencyException extends \LogicException
 {
 
 }

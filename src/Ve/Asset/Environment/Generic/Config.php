@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Vasset package.
+ * This file is part of the VeAsset package.
  *
  * Released under the MIT licence.
  * This file is free to use and reuse as long as the original credits are preserved.
@@ -16,7 +16,7 @@ use FuelPHP\Common\Arr;
 use Ve\Asset\Environment\ConfigInterface;
 
 /**
- * Fetches
+ * Fetches config values from a list of files complied into one array. Expects "<?php return array();" in the files
  *
  * @package Ve\Asset\Environment\Generic
  * @author Ve Interactive PHP Team

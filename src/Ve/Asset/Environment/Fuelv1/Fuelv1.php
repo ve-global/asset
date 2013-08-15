@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Vasset package.
+ * This file is part of the VeAsset package.
  *
  * Released under the MIT licence.
  * This file is free to use and reuse as long as the original credits are preserved.
@@ -12,7 +12,7 @@
 
 namespace Ve\Asset\Environment\Fuelv1;
 
-use Ve\Asset\Environment\Driver;
+use Ve\Asset\Environment\AbstractDriver;
 
 /**
  * Defines an interface with the FuelPHP v1.x framework
@@ -20,7 +20,7 @@ use Ve\Asset\Environment\Driver;
  * @package Ve\Asset\Environment\Fuelv1
  * @author  Ve Interactive PHP Team
  */
-class Fuelv1 extends Driver
+class Fuelv1 extends AbstractDriver
 {
 
 	/**
