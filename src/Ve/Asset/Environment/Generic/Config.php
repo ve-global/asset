@@ -16,7 +16,7 @@ use FuelPHP\Common\Arr;
 use Ve\Asset\Environment\ConfigInterface;
 
 /**
- * Fetches
+ * Fetches config values from a list of files complied into one array. Expects "<?php return array();" in the files
  *
  * @package Ve\Asset\Environment\Generic
  * @author Ve Interactive PHP Team
