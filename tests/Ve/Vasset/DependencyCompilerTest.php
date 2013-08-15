@@ -45,7 +45,10 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 			'files' => ['f1', 'f2', 'f3'],
 		];
 
-		$this->object->addGroup($groupName, $group);
+		$this->assertInstanceOf(
+			'Ve\Asset\DependencyCompiler',
+			$this->object->addGroup($groupName, $group)
+		);
 
 		$this->assertEquals(
 			$group,
@@ -72,7 +75,10 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 			$this->object->getGroup($groupName)
 		);
 
-		$this->object->removeGroup($groupName);
+		$this->assertInstanceOf(
+			'Ve\Asset\DependencyCompiler',
+			$this->object->removeGroup($groupName)
+		);
 
 		$this->assertNull(
 			$this->object->getGroup($groupName)
