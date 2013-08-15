@@ -228,31 +228,6 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers Ve\Asset\DependencyCompiler::addGroup
 	 * @covers Ve\Asset\DependencyCompiler::compile
-	 * @expectedException Ve\Asset\Exception\CircularDependencyException
-	 */
-	public function testCircularDependencyCompile()
-	{
-		$this->object->addGroup('one', [
-				'deps' => ['two'],
-				'files' => ['f1', 'f2', 'f3'],
-			]);
-
-		$this->object->addGroup('two', [
-				'deps' => ['three'],
-				'files' => ['f4', 'f5', 'f6'],
-			]);
-
-		$this->object->addGroup('three', [
-				'deps' => ['one'],
-				'files' => ['f4', 'f5', 'f6'],
-			]);
-
-		$this->object->compile();
-	}
-
-	/**
-	 * @covers Ve\Asset\DependencyCompiler::addGroup
-	 * @covers Ve\Asset\DependencyCompiler::compile
 	 * @expectedException Ve\Asset\Exception\UnsatisfiableDependencyException
 	 */
 	public function testMissingDepCompile()
