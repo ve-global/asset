@@ -12,6 +12,7 @@
 
 namespace Ve\Asset\Environment\Generic;
 
+use FuelPHP\Common\Arr;
 use Ve\Asset\Environment\ConfigInterface;
 
 /**
@@ -52,20 +53,7 @@ class Config implements ConfigInterface
 	 */
 	public function get($key, $default = null)
 	{
-		$array = $this->config;
-
-		// Lovingly copied from the FuelPHP v1 Arr::get()
-		foreach (explode('.', $key) as $key_part)
-		{
-			if (isset($array[$key_part]) === false && ! is_array($array) or ! array_key_exists($key_part, $array))
-			{
-				return $default;
-			}
-
-			$array = $array[$key_part];
-		}
-
-		return $array;
+		return Arr::get($this->config, $key, $default);
 	}
 
 }
