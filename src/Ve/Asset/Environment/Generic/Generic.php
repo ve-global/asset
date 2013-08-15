@@ -13,7 +13,7 @@
 namespace Ve\Asset\Environment\Generic;
 
 use Ve\Asset\Environment\ConfigInterface;
-use Ve\Asset\Environment\Driver;
+use Ve\Asset\Environment\AbstractDriver;
 
 /**
  * Allows the use of Vasset outside of a framework
@@ -21,7 +21,7 @@ use Ve\Asset\Environment\Driver;
  * @package Ve\Asset\Environment\Generic
  * @author  Ve Interactive PHP Team
  */
-class Generic extends Driver
+class Generic extends AbstractDriver
 {
 
 	protected $configFiles = [];

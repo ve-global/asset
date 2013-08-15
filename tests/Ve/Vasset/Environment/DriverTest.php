@@ -22,13 +22,13 @@ class DriverTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Driver
+	 * @var AbstractDriver
 	 */
 	protected $instance;
 
 	protected function setUp()
 	{
-		$this->instance = Driver::getEnvironment('generic');
+		$this->instance = AbstractDriver::getEnvironment('generic');
 	}
 
 	/**
@@ -68,7 +68,7 @@ class DriverTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testInvalidInstance()
 	{
-		$instance = Driver::getEnvironment('foobar');
+		$instance = AbstractDriver::getEnvironment('foobar');
 	}
 
 }

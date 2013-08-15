@@ -18,7 +18,7 @@ namespace Ve\Asset\Environment;
  * @package Ve\Asset\Environment
  * @author  Ve Interactive PHP Team
  */
-abstract class Driver
+abstract class AbstractDriver
 {
 
 	/**
@@ -45,7 +45,7 @@ abstract class Driver
 	 * @param $environment string Name of the environment to use. Eg: fuelv1, default
 	 * @param $config      array  Optional config array
 	 * 
-	 * @return Driver
+	 * @return AbstractDriver
 	 */
 	public static function getEnvironment($environment, $config = [])
 	{
