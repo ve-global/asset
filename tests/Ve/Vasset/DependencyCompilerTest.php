@@ -176,7 +176,7 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 				'deps' => ['two'],
 				'files' => ['f1', 'f2', 'f3'],
 			]);
-		
+
 		$this->object->addGroup('two', [
 				'deps' => ['one'],
 				'files' => ['f4', 'f5', 'f6'],
