@@ -7,7 +7,7 @@ Composer based advanced asset manager
 
 ## Installation
 
-Just add `"ve/vasset": "dev-master"` to your composer.json
+Just add `"ve/asset": "dev-master"` to your composer.json
 
 ## Licence
 
