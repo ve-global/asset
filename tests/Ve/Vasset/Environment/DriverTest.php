@@ -32,9 +32,9 @@ class DriverTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Ve\Asset\Environment\Driver::__construct
-	 * @covers Ve\Asset\Environment\Driver::getEnvironment
-	 * @covers Ve\Asset\Environment\Driver::bootstrap
+	 * @covers Ve\Asset\Environment\AbstractDriver::__construct
+	 * @covers Ve\Asset\Environment\AbstractDriver::getEnvironment
+	 * @covers Ve\Asset\Environment\AbstractDriver::bootstrap
 	 * @covers Ve\Asset\Environment\Generic\Generic::bootstrap
 	 */
 	public function testGetEnvironment()
@@ -46,11 +46,11 @@ class DriverTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Ve\Asset\Environment\Driver::__construct
-	 * @covers Ve\Asset\Environment\Driver::getEnvironment
-	 * @covers Ve\Asset\Environment\Driver::bootstrap
-	 * @covers Ve\Asset\Environment\Driver::getConfigInstance
-	 * @covers Ve\Asset\Environment\Driver::getConfig
+	 * @covers Ve\Asset\Environment\AbstractDriver::__construct
+	 * @covers Ve\Asset\Environment\AbstractDriver::getEnvironment
+	 * @covers Ve\Asset\Environment\AbstractDriver::bootstrap
+	 * @covers Ve\Asset\Environment\AbstractDriver::getConfigInstance
+	 * @covers Ve\Asset\Environment\AbstractDriver::getConfig
 	 * @covers Ve\Asset\Environment\Generic\Generic::bootstrap
 	 * @covers Ve\Asset\Environment\Generic\Generic::getConfigInstance
 	 */
@@ -63,7 +63,7 @@ class DriverTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Ve\Asset\Environment\Driver::getEnvironment
+	 * @covers Ve\Asset\Environment\AbstractDriver::getEnvironment
 	 * @expectedException \InvalidArgumentException
 	 */
 	public function testInvalidInstance()
