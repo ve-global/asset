@@ -15,10 +15,10 @@ namespace Ve\Asset;
 /**
  *
  *
- * @package Ve\Asset
+ * @package Ve\Asset\Environment\Generic
  * @author  Ve Interactive PHP Team
  */
-class VeAsset
+interface DependencyCompilerInterface
 {
 
 }

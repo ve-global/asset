@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Vasset package.
+ * This file is part of the VeAsset package.
  *
  * Released under the MIT licence.
  * This file is free to use and reuse as long as the original credits are preserved.
