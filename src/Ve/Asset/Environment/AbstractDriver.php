@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Vasset package.
+ * This file is part of the VeAsset package.
  *
  * Released under the MIT licence.
  * This file is free to use and reuse as long as the original credits are preserved.
@@ -18,7 +18,7 @@ namespace Ve\Asset\Environment;
  * @package Ve\Asset\Environment
  * @author  Ve Interactive PHP Team
  */
-abstract class Driver
+abstract class AbstractDriver
 {
 
 	/**
@@ -45,7 +45,7 @@ abstract class Driver
 	 * @param $environment string Name of the environment to use. Eg: fuelv1, default
 	 * @param $config      array  Optional config array
 	 * 
-	 * @return Driver
+	 * @return AbstractDriver
 	 */
 	public static function getEnvironment($environment, $config = [])
 	{
