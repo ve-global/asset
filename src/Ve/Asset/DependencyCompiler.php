@@ -13,7 +13,6 @@
 namespace Ve\Asset;
 
 use FuelPHP\Common\Arr;
-use Ve\Asset\Exception\CircularDependencyException;
 use Ve\Asset\Exception\UnsatisfiableDependencyException;
 
 /**
