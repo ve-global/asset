@@ -33,20 +33,18 @@ class DependencyCompiler implements DependencyCompilerInterface
 	/**
 	 * Add a group of files to the compiler. Sample config:
 	 *
-	 * [
-	 * 		'deps' => ['group1', 'group2'],
-	 * ]
+	 * ['group1', 'group2']
 	 *
 	 * This will ensure that all files and dependencies from group1 and group2 are included before the files in "files"
 	 *
 	 * @param string $name   Name of the group for later identification
-	 * @param array  $config
+	 * @param array  $deps
 	 *
 	 * @return DependencyCompilerInterface
 	 */
-	public function addGroup($name, $config)
+	public function addGroup($name, $deps = [])
 	{
-		$this->groups[$name] = $config;
+		$this->groups[$name] = $deps;
 		return $this;
 	}
 
@@ -75,11 +73,8 @@ class DependencyCompiler implements DependencyCompilerInterface
 		$groupKeys = array_flip($groups);
 
 		// For each group
-		foreach ($this->groups as $name => $content)
+		foreach ($this->groups as $name => $deps)
 		{
-			// Get the dependencies
-			$deps = Arr::get($content, 'deps', []);
-
 			// Check each dependency is above the current group
 			foreach ($deps as $dep)
 			{

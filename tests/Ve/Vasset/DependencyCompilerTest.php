@@ -38,17 +38,15 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	public function testAddGetGroup()
 	{
 		$groupName = 'test';
-		$group = [
-			'files' => ['f1', 'f2', 'f3'],
-		];
+		$deps = [];
 
 		$this->assertInstanceOf(
 			'Ve\Asset\DependencyCompiler',
-			$this->object->addGroup($groupName, $group)
+			$this->object->addGroup($groupName, $deps)
 		);
 
 		$this->assertEquals(
-			$group,
+			$deps,
 			$this->object->getGroup($groupName)
 		);
 	}
@@ -61,14 +59,12 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	public function testRemoveGroup()
 	{
 		$groupName = 'test';
-		$group = [
-			'files' => ['f1', 'f2', 'f3'],
-		];
+		$deps = [];
 
-		$this->object->addGroup($groupName, $group);
+		$this->object->addGroup($groupName, $deps);
 
 		$this->assertEquals(
-			$group,
+			$deps,
 			$this->object->getGroup($groupName)
 		);
 
@@ -84,42 +80,11 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers Ve\Asset\DependencyCompiler::addGroup
-	 * @covers Ve\Asset\DependencyCompiler::getGroup
-	 */
-	public function testOverrideGroup()
-	{
-		$groupName = 'test';
-		$group = [
-			'files' => ['f1', 'f2', 'f3'],
-		];
-		$group2 = [
-			'files' => ['f4', 'f5', 'f6'],
-		];
-
-		$this->object->addGroup($groupName, $group);
-
-		$this->assertEquals(
-			$group,
-			$this->object->getGroup($groupName)
-		);
-
-		$this->object->addGroup($groupName, $group2);
-
-		$this->assertEquals(
-			$group2,
-			$this->object->getGroup($groupName)
-		);
-	}
-
-	/**
-	 * @covers Ve\Asset\DependencyCompiler::addGroup
 	 * @covers Ve\Asset\DependencyCompiler::compile
 	 */
 	public function testSingleGroupCompile()
 	{
-		$this->object->addGroup('one', [
-				'files' => ['f1', 'f2', 'f3'],
-			]);
+		$this->object->addGroup('one', []);
 
 		$this->assertEquals(
 			['one'],
@@ -149,9 +114,7 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDependencyCompile()
 	{
-		$this->object->addGroup('one', [
-				'deps' => ['two'],
-			]);
+		$this->object->addGroup('one', ['two']);
 
 		$this->object->addGroup('two', []);
 
@@ -167,13 +130,9 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDependencyCompileThreeLevel()
 	{
-		$this->object->addGroup('one', [
-				'deps' => ['two'],
-			]);
+		$this->object->addGroup('one', ['two']);
 
-		$this->object->addGroup('two', [
-				'deps' => ['three'],
-			]);
+		$this->object->addGroup('two', ['three']);
 
 		$this->object->addGroup('three', []);
 
@@ -189,17 +148,11 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDependencyCompileComplexTree()
 	{
-		$this->object->addGroup('one', [
-				'deps' => ['two', 'four'],
-			]);
+		$this->object->addGroup('one', ['two', 'four']);
 
-		$this->object->addGroup('two', [
-				'deps' => ['three'],
-			]);
+		$this->object->addGroup('two', ['three']);
 
-		$this->object->addGroup('four', [
-				'deps' => ['three'],
-			]);
+		$this->object->addGroup('four', ['three']);
 
 		$this->object->addGroup('three', []);
 
@@ -216,9 +169,7 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testMissingDepCompile()
 	{
-		$this->object->addGroup('one', [
-				'deps' => ['two'],
-			]);
+		$this->object->addGroup('one', ['two']);
 
 		$this->object->compile();
 	}
