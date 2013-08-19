@@ -56,4 +56,11 @@ interface DependencyCompilerInterface
 	 */
 	public function compile();
 
+	/**
+	 * Resets this instance to a "new" state
+	 *
+	 * @return DependencyCompilerInterface
+	 */
+	public function reset();
+
 }
