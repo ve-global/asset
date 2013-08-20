@@ -215,16 +215,74 @@ class VeAsset
 		// Compile the themes based on the active one.
 
 		// Create a list, add the active theme then add deps and deps of deps
+		$themeList = $this->calculateNeededThemes();
 
 		// Use the DRC to build the list of themes in order to check
+		$this->drc->reset();
+		foreach ($themeList as $theme)
+		{
+			$this->drc->addGroup($theme, Arr::get($this->themes, $theme.'.deps', []));
+		}
+
+		$themeList = $this->drc->compile();
+		// Make sure they are in the correct loading order
+		$themeList = array_reverse($themeList);
 
 		// Build a list of groups from all themes that need to be loaded
+		$megaTheme = $this->combineThemes($themeList);
 
 		// Use the DRC again to work out what order the groups need to be added in
+		$this->drc->reset();
+		foreach (Arr::get($megaTheme, 'groups.'.$group) as $name => $config)
+		{
+			$this->drc->addGroup($name, Arr::get($config, 'deps', []));
+		}
+		$groupList = $this->drc->compile();
+
+		// Combine all the lists of files from all the groups for loading
+		$fileList = [];
+		foreach ($groupList as $groupName)
+		{
+			$fileList = array_merge($fileList, Arr::get($megaTheme, 'groups.'.$group.'.'.$groupName.'.files', []));
+		}
+
+		print_r($fileList);
+		exit;
 
 		// Load a file, check for it in the active theme then bubble up through the deps list if it is not found
 
 		return '';
+	}
+
+	/**
+	 * Calculates which themes are needed
+	 *
+	 * @param string $theme base theme to start from, defaults to the active theme if null/nothing is passed
+	 *
+	 * @return array[string] A list of all the themes that need to be loaded
+	 */
+	public function calculateNeededThemes($theme = null, &$result = [])
+	{
+		if (is_null($theme))
+		{
+			$theme = $this->getActiveTheme();
+		}
+
+		if ( ! in_array($theme, $result))
+		{
+			$result[] = $theme;
+			$deps = Arr::get($this->themes, $theme.'.deps', []);
+			foreach ($deps as $dep)
+			{
+				$this->calculateNeededThemes($dep, $result);
+			}
+		}
+		else
+		{
+			// TODO: Throw an exception or something, circular dependency detected
+		}
+
+		return $result;
 	}
 
 	/**

@@ -12,6 +12,8 @@
 
 namespace Ve\Asset;
 
+use Ve\Asset\Environment\AbstractDriver;
+
 /**
  *
  *
@@ -327,6 +329,68 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 			$expected,
 			$this->object->combineThemes(['default', 'two'])
 		);
+	}
+
+	public function testCombinesdfsdgfThemes()
+	{
+		$this->object = new VeAsset(new DependencyCompiler(), new FileCombiner(), AbstractDriver::getEnvironment('generic'));
+
+		// Add something to the default theme
+		$this->object->updateTheme([
+				'deps' => ['two'],
+				'groups' => [
+					'js' => [
+						'main' => [
+							'files' => [
+								'a.js',
+								'b.js',
+								'c.js',
+							],
+						]
+					],
+					'css' => [
+						'main' => [
+							'files' => [
+								'a.css',
+								'b.css',
+								'c.css',
+							],
+						]
+					]
+				],
+			]);
+
+		$this->object->addTheme('two', [
+				'groups' => [
+					'js' => [
+						'main' => [
+							'files' => [
+								'd.js',
+							],
+						],
+						'blue' => [
+							'deps' => [
+								'main',
+							],
+							'files' => [
+								'asdadsasd'
+							]
+						]
+					],
+					'css' => [
+						'main' => [
+							'override' => true,
+							'files' => [
+								'd.css',
+							],
+						],
+					],
+				],
+			]);
+
+		echo $this->object->js();
+
+		die();
 	}
 
 }
