@@ -52,6 +52,12 @@ class VeAsset
 	protected $themes = [];
 
 	/**
+	 * Container for any inline JS
+	 * @var array
+	 */
+	protected $inlineJS = [];
+
+	/**
 	 * @param DependencyCompilerInterface $drc
 	 * @param FileCombinerInterface       $fc
 	 * @param AbstractDriver              $env
@@ -204,37 +210,31 @@ class VeAsset
 		return $this;
 	}
 
-	// Add group to theme
-	public function addGroup($group, $theme = null)
-	{
-		return $this;
-	}
-
-	// remove group from theme
-	public function removeGroup($group)
-	{
-		return $this;
-	}
-
-	// update group, change files, disable, etc
-	public function editGroup($group, $property, $value)
-	{
-		return $this;
-	}
-
 	// Compile js/css into one tag
 	public function css(){}
 
 	public function js(){}
 
-	// Add and get inline js
+	/**
+	 * Adds inline js
+	 *
+	 * @param string $js
+	 *
+	 * @return $this
+	 */
 	public function inlineJS($js)
 	{
+		$this->inlineJS[] = $js;
 		return $this;
 	}
 
+	/**
+	 * Renders stored inline js
+	 *
+	 * @return string
+	 */
 	public function renderInlineJS()
 	{
-
+		return "<script>\n".implode('', $this->inlineJS)."\n</script>";
 	}
 }

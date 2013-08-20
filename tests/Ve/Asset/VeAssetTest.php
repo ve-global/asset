@@ -133,6 +133,15 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @covers            Ve\Asset\VeAsset::removeTheme()
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function testRemoveActiveTheme()
+	{
+		$this->object->removeTheme('default');
+	}
+
+	/**
 	 * @covers Ve\Asset\VeAsset::getTheme()
 	 * @covers Ve\Asset\VeAsset::addTheme()
 	 * @covers Ve\Asset\VeAsset::updateTheme()
@@ -228,6 +237,21 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 	public function testInvalidActive()
 	{
 		$this->object->setActiveTheme(123234);
+	}
+
+	/**
+	 * @covers Ve\Asset\VeAsset::inlineJS()
+	 * @covers Ve\Asset\VeAsset::renderInlineJS()
+	 */
+	public function testInlineJS()
+	{
+		$js = 'var test = "baz";';
+		$this->object->inlineJS($js);
+
+		$this->assertEquals(
+			"<script>\n".$js."\n</script>",
+			$this->object->renderInlineJS()
+		);
 	}
 
 }
