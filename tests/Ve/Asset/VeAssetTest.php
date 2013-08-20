@@ -12,6 +12,9 @@
 
 namespace Ve\Asset;
 
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamFile;
 use Ve\Asset\Environment\AbstractDriver;
 
 /**
@@ -335,8 +338,49 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object = new VeAsset(new DependencyCompiler(), new FileCombiner(), AbstractDriver::getEnvironment('generic'));
 
+		// Create two dummy files
+		$root = vfsStream::setup('root');
+
+		$defaultJSDir = new vfsStreamDirectory('js');
+
+		$file1 = new vfsStreamFile('a.js');
+		$file1->setContent("default a\n");
+		$defaultJSDir->addChild($file1);
+
+		$file2 = new vfsStreamFile('b.js');
+		$file2->setContent("default b\n");
+		$defaultJSDir->addChild($file2);
+
+		$file3 = new vfsStreamFile('c.js');
+		$file3->setContent("default c\n");
+		$defaultJSDir->addChild($file3);
+
+		$defaultThemeDir = new vfsStreamDirectory('default');
+		$defaultThemeDir->addChild($defaultJSDir);
+		$root->addChild($defaultThemeDir);
+
+		// Set up theme 2 files
+		$twoThemeJSDir = new vfsStreamDirectory('js');
+
+		$file4 = new vfsStreamFile('d.js');
+		$file4->setContent("two d\n");
+		$twoThemeJSDir->addChild($file4);
+
+		$file5 = new vfsStreamFile('e.js');
+		$file5->setContent("two e\n");
+		$twoThemeJSDir->addChild($file5);
+
+		$file6 = new vfsStreamFile('a.js');
+		$file6->setContent("two a\n");
+		$twoThemeJSDir->addChild($file6);
+
+		$twoThemeDir = new vfsStreamDirectory('two');
+		$twoThemeDir->addChild($twoThemeJSDir);
+		$root->addChild($twoThemeDir);
+
 		// Add something to the default theme
 		$this->object->updateTheme([
+				'path' => 'vfs://root/default',
 				'deps' => ['two'],
 				'groups' => [
 					'js' => [
@@ -348,19 +392,11 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 							],
 						]
 					],
-					'css' => [
-						'main' => [
-							'files' => [
-								'a.css',
-								'b.css',
-								'c.css',
-							],
-						]
-					]
 				],
 			]);
 
 		$this->object->addTheme('two', [
+				'path' => 'vfs://root/two',
 				'groups' => [
 					'js' => [
 						'main' => [
@@ -373,17 +409,9 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 								'main',
 							],
 							'files' => [
-								'asdadsasd'
+								'e.js'
 							]
 						]
-					],
-					'css' => [
-						'main' => [
-							'override' => true,
-							'files' => [
-								'd.css',
-							],
-						],
 					],
 				],
 			]);

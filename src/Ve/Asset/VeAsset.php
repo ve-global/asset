@@ -225,7 +225,8 @@ class VeAsset
 		}
 
 		$themeList = $this->drc->compile();
-		// Make sure they are in the correct loading order
+
+		// Make sure the themes are in the correct order
 		$themeList = array_reverse($themeList);
 
 		// Build a list of groups from all themes that need to be loaded
@@ -246,10 +247,30 @@ class VeAsset
 			$fileList = array_merge($fileList, Arr::get($megaTheme, 'groups.'.$group.'.'.$groupName.'.files', []));
 		}
 
-		print_r($fileList);
-		exit;
-
 		// Load a file, check for it in the active theme then bubble up through the deps list if it is not found
+
+		// For each file. Make sure there's a default value so we can detect if a file is missing
+		$fileLocations = array_fill_keys($fileList, null);
+		foreach ($fileList as $file)
+		{
+			// for each theme in the tree
+			foreach ($themeList as $theme)
+			{
+				// check if the file exists
+				$filePath = $this->themes[$theme]['path'] . '/' . $group . '/' . $file;
+
+				if ( file_exists($filePath))
+				{
+					// if yes then return the path and carry on
+					$fileLocations[$file] = $filePath;
+					continue;
+				}
+				// else carry on
+			}
+		}
+
+		var_dump($fileLocations);
+		exit;
 
 		return '';
 	}
