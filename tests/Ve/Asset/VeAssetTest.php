@@ -254,4 +254,79 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	public function testCombineThemes()
+	{
+		// Add something to the default theme
+		$this->object->updateTheme([
+			'groups' => [
+				'js' => [
+					'main' => [
+						'files' => [
+							'a.js',
+							'b.js',
+							'c.js',
+						],
+					]
+				],
+				'css' => [
+					'main' => [
+						'files' => [
+							'a.css',
+							'b.css',
+							'c.css',
+						],
+					]
+				]
+			],
+		]);
+
+		$this->object->addTheme('two', [
+				'groups' => [
+					'js' => [
+						'main' => [
+							'files' => [
+								'd.js',
+							],
+						],
+					],
+					'css' => [
+						'main' => [
+							'override' => true,
+							'files' => [
+								'd.css',
+							],
+						],
+					],
+				],
+			]);
+
+		$expected = [
+			'groups' => [
+				'js' => [
+					'main' => [
+						'files' => [
+							'a.js',
+							'b.js',
+							'c.js',
+							'd.js',
+						],
+					]
+				],
+				'css' => [
+					'main' => [
+						'files' => [
+							'd.css',
+						],
+						'override' => true,
+					]
+				]
+			],
+		];
+
+		$this->assertEquals(
+			$expected,
+			$this->object->combineThemes(['default', 'two'])
+		);
+	}
+
 }

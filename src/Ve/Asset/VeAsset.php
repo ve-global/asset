@@ -210,10 +210,71 @@ class VeAsset
 		return $this;
 	}
 
-	// Compile js/css into one tag
-	public function css(){}
+	protected function generate($group)
+	{
+		// Compile the themes based on the active one.
 
-	public function js(){}
+		// Create a list, add the active theme then add deps and deps of deps
+
+		// Use the DRC to build the list of themes in order to check
+
+		// Build a list of groups from all themes that need to be loaded
+
+		// Use the DRC again to work out what order the groups need to be added in
+
+		// Load a file, check for it in the active theme then bubble up through the deps list if it is not found
+
+		return '';
+	}
+
+	/**
+	 * Creates a list of the active theme and all of its dependences. All the configs are then combined into one large
+	 * array to create a psudo "master" theme that will be used to compile the needed assets to load
+	 *
+	 * @param array $themes List of themes to combine
+	 */
+	public function combineThemes($themes)
+	{
+		$masterThemeConfig = [];
+		$groupTypes = ['js', 'css'];
+
+		// For each theme
+		foreach ($themes as $themeName)
+		{
+			$config = $this->themes[$themeName];
+
+			foreach ($groupTypes as $groupType)
+			{
+				// for each group
+				foreach (Arr::get($config, 'groups.'.$groupType, []) as $groupName => $group)
+				{
+					$newConfig = $group;
+
+					// If the group has override, set the value, else add the config together
+					if (Arr::get($group, 'override', false) === false)
+					{
+						$existingConfig = Arr::get($masterThemeConfig, 'groups.'.$groupType.'.'.$groupName, []);
+						$newConfig = array_merge_recursive($existingConfig, $newConfig);
+					}
+
+					Arr::set($masterThemeConfig, 'groups.'.$groupType.'.'.$groupName, $newConfig);
+				}
+			}
+		}
+
+		return $masterThemeConfig;
+	}
+
+	// Compile js/css into one tag
+	public function css()
+	{
+		return $this->generate('css');
+	}
+
+	public function js()
+	{
+		return $this->generate('js');
+	}
 
 	/**
 	 * Adds inline js
