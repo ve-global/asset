@@ -31,6 +31,17 @@ class DependencyCompiler implements DependencyCompilerInterface
 	protected $groups = [];
 
 	/**
+	 * Resets all the assigned groups
+	 *
+	 * @return DependencyCompilerInterface
+	 */
+	public function reset()
+	{
+		$this->groups = [];
+		return $this;
+	}
+
+	/**
 	 * Add a group of files to the compiler. Sample config:
 	 *
 	 * ['group1', 'group2']
