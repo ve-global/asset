@@ -276,10 +276,18 @@ class VeAsset
 		{
 			if (is_null($location))
 			{
+				// TODO: give this the ability to fail silently
 				throw new \InvalidArgumentException('Unable to find a valid file for '.$file);
 			}
 
-			$tags[] = "<script src=\"$location\"></script>";
+			if ($group == 'js')
+			{
+				$tags[] = "<script src=\"$location\"></script>";
+			}
+			else if ($group == 'css')
+			{
+				$tags[] = "<link rel=\"stylesheet\" href=\"$location\" />";
+			}
 		}
 
 		return implode("\n", $tags);
