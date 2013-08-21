@@ -269,10 +269,19 @@ class VeAsset
 			}
 		}
 
-		var_dump($fileLocations);
-		exit;
+		// Now load each file into a <script> tag
+		$tags = [];
+		foreach ($fileLocations as $file => $location)
+		{
+			if (is_null($location))
+			{
+				throw new \InvalidArgumentException('Unable to find a valid file for '.$file);
+			}
 
-		return '';
+			$tags[] = "<script src=\"$location\"></script>";
+		}
+
+		return implode("\n", $tags);
 	}
 
 	/**
