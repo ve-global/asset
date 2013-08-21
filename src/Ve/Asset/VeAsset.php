@@ -12,7 +12,7 @@
 
 namespace Ve\Asset;
 
-use FuelPHP\Common\Arr;
+use Fuel\Common\Arr;
 use Ve\Asset\Environment\AbstractDriver;
 
 /**
