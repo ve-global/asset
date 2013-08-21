@@ -210,6 +210,7 @@ class VeAsset
 		return $this;
 	}
 
+	// TODO: clean up this whole mess
 	protected function generate($group)
 	{
 		// Compile the themes based on the active one.

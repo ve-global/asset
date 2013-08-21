@@ -416,9 +416,14 @@ class VeAssetTest extends \PHPUnit_Framework_TestCase
 				],
 			]);
 
-		echo $this->object->js();
-
-		die();
+		$this->assertEquals(
+			'<script src="vfs://root/two/js/a.js"></script>
+<script src="vfs://root/default/js/b.js"></script>
+<script src="vfs://root/default/js/c.js"></script>
+<script src="vfs://root/two/js/d.js"></script>
+<script src="vfs://root/two/js/e.js"></script>',
+			$this->object->js()
+		);
 	}
 
 }
