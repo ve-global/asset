@@ -80,6 +80,33 @@ class DependencyCompilerTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers Ve\Asset\DependencyCompiler::addGroup
+	 * @covers Ve\Asset\DependencyCompiler::getGroup
+	 * @covers Ve\Asset\DependencyCompiler::reset
+	 */
+	public function testReset()
+	{
+		$groupName = 'test';
+		$deps = [];
+
+		$this->object->addGroup($groupName, $deps);
+
+		$this->assertEquals(
+			$deps,
+			$this->object->getGroup($groupName)
+		);
+
+		$this->assertInstanceOf(
+			'Ve\Asset\DependencyCompiler',
+			$this->object->reset()
+		);
+
+		$this->assertNull(
+			$this->object->getGroup($groupName)
+		);
+	}
+
+	/**
+	 * @covers Ve\Asset\DependencyCompiler::addGroup
 	 * @covers Ve\Asset\DependencyCompiler::compile
 	 */
 	public function testSingleGroupCompile()
