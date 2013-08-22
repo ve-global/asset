@@ -28,7 +28,7 @@ class Fuelv1 extends AbstractDriver
 	 */
 	public function bootstrap(array $config = [])
 	{
-		\Finder::add_path(realpath(__DIR__.'../../../../../resources/'));
+		\Finder::instance()->add_path(realpath(__DIR__.'../../../../../resources/'));
 	}
 
 	/**
